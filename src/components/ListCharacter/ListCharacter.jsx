@@ -12,8 +12,8 @@ export function ListCharacter() {
   return (
     <div className="listCharacter">
     {
-      characters.map(character => (
-        <Character className="listCharacter__character" character={character} />
+      characters.map((character, index) => (
+        <Character className="listCharacter__character" character={character} key={index}/>
       ))
     }
     </div>

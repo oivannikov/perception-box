@@ -1,21 +1,7 @@
-#card {
+.card {
   max-width: 345px;
   margin: 20px;
-  color: white;
-  background-color: black;
-
-  #card__favorite {
-    color: white;
-  }
-
-  #card__more {
-    color: white;
-  }
-
-  #card__avatar {
-    display: flex;
-    justify-content: center;
-  }
+  opacity: 0.9;
 }
 
 

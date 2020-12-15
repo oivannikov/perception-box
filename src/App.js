@@ -5,10 +5,12 @@ import FacebookLogin from 'react-facebook-login';
 import { useDispatch } from 'react-redux';
 import { setCharacters } from './redux/actions';
 
+import { useDebounce } from './components/Hooks/debouncedSearch';
 import { ListCharacter } from './components/ListCharacter/ListCharacter';
-import { getCharacters } from './api/characters';
+import { getCharacters, getCharactersFromField } from './api/characters';
 import TextField from '@material-ui/core/TextField';
 import Autocomplete from '@material-ui/lab/Autocomplete';
+
 
 import './App.scss';
 // import { Autocomplete } from './components/Autocomplete/Autocomplete';
@@ -36,16 +38,41 @@ function App() {
       .then(characters => dispatch(setCharacters(characters)));
   }, []);
 
+   // Search term
+   const [searchTerm, setSearchTerm] = useState('');
+  //  const [results, setResults] = useState([]);
+  //  const [isSearching, setIsSearching] = useState(false);
+   const debouncedSearchTerm = useDebounce(searchTerm, 500);
+   
+
+  //  Effect for API call 
+  useEffect(() => {
+    if (debouncedSearchTerm) {
+      getCharactersFromField()
+        .then(characters => console.log(characters));
+    }
+
+    },[debouncedSearchTerm] // Only call effect if debounced search term changes
+  );
+
+  console.log(searchTerm);
+
   return (
     <div className="app">
-      {/* <Autocomplete /> */}
-        <Autocomplete
-          id="combo-box-demo"
-          options={top100Films}
-          getOptionLabel={(option) => option.title}
-          style={{ width: 300 }}
-          renderInput={(params) => <TextField {...params} label="Combo box" variant="outlined" />}
-        />
+      <Autocomplete
+        className="app__autocomplete"
+        options={top100Films}
+        getOptionLabel={(option) => option.title}
+        renderInput={(params) => 
+          <TextField
+            {...params}
+            className="app__field"
+            label="Searching"
+            variant="outlined"
+            value={searchTerm}
+            onChange={({ target }) => setSearchTerm(target.value)}
+          /> }
+      />
 
       <ListCharacter />
 

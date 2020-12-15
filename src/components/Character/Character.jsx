@@ -56,19 +56,13 @@ export default function Character({ character }) {
     setExpanded(!expanded);
   };
 
-  console.log(characters);
   return (
-    <Card id="card">
+    <Card className="card">
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
             { name[0] }
           </Avatar>
-        }
-        action={
-          <IconButton aria-label="settings">
-            <MoreVertIcon />
-          </IconButton>
         }
         title={name}
         subheader="September 14, 2016"
@@ -88,11 +82,10 @@ export default function Character({ character }) {
 
       <CardActions disableSpacing>
         <IconButton aria-label="add to favorites">
-          <FavoriteIcon id="card__favorite" />
+          <FavoriteIcon className="card__favorite" />
         </IconButton>
 
         <IconButton
-        id="card__more"
           className={clsx(classes.expand, {
             [classes.expandOpen]: expanded,
           })}
