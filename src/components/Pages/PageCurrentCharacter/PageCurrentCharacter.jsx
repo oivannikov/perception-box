@@ -14,15 +14,18 @@ export function PageCurrentCharacter() {
   const character = useSelector(state => state.currentCharacter);
   const dispatch = useDispatch();
 
-  const { name } = character;
+  const { name, height, mass, hair_color, skin_color, eye_color, birth_year,  gender, homeworld, films } = character;
   
   useEffect(() => {
     getCurrentCharacter(characterId)
       .then(character => dispatch(setCurrentCharacter(character)));
-      // У текущего сharacter не будет полей id и liked (если нужно, нужно прописать функцию впереди characterWithId() )
   }, []);
 
   return (
-    <h1 className="name">Name of { name }</h1>
+    <div className="currentCharacter">
+      <ul>
+        
+      </ul>
+    </div>
   );
 }

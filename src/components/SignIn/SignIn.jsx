@@ -14,29 +14,31 @@ export function SignIn({ onRigist, onPageCharacters }) {
 
   return (
     <form className="form">
-      <div className="form__login">
-        <input
-          className="form__input"
-          type="email"
-          placeholder="Login"
-          value={signInLogin}
-          onChange={({ target }) => setSignInLogin(target.value)}
-          required
-        />
+      <div className="form__authorization">
+        <div className="form__login">
+          <input
+            className="form__input"
+            type="email"
+            placeholder="Login"
+            value={signInLogin}
+            onChange={({ target }) => setSignInLogin(target.value)}
+            required
+          />
+        </div>
+
+        <div className="form__password">
+          <input
+            className="form__input"
+            type="password"
+            placeholder="Password"
+            value={signInPassword}
+            onChange={({ target }) => setSignInPassword(target.value)}
+            required
+          />
+        </div>
       </div>
 
-      <div className="form__password">
-        <input
-          className="form__input"
-          type="password"
-          placeholder="Password"
-          value={signInPassword}
-          onChange={({ target }) => setSignInPassword(target.value)}
-          required
-        />
-      </div>
-
-      <div className="form__bettons">
+      <div className="form__buttons">
         <div className="form__button">
           <button className="form__sign-in" type="sumbit">Sign in</button>
         </div>
