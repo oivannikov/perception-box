@@ -2,8 +2,12 @@ import { useState, useEffect } from 'react';
 
 import FacebookLogin from 'react-facebook-login';
 
+import { useHistory } from "react-router-dom";
+
 import { useDispatch, useSelector } from 'react-redux';
-import { setCharacters, setCharactersFromField } from '../../../redux/actions';
+import { setCharacters, setCharactersFromField, setUpdatedCharacters } from '../../../redux/actions';
+
+import { charactersWithId, updateFavoritesStorage } from '../../Utils/Utils';
 
 import { useDebounce } from '../../Hooks/debouncedSearch';
 import { ListCharacter } from '../../ListCharacter/ListCharacter';
@@ -16,15 +20,21 @@ import './PageCharacters.scss';
 
 export function PageCharacters() {
   const charactersFromField = useSelector(state => state.charactersFromField);
+
   const dispatch = useDispatch();
 
   const [searchTerm, setSearchTerm] = useState('');
   const debouncedSearchTerm = useDebounce(searchTerm, 500);
 
+  const history = useHistory();
   // Получаю данные сразу при регистрации
   useEffect(() => {
     getCharacters()
-      .then(characters => dispatch(setCharacters(characters)));
+      .then(result => {
+        const characters = charactersWithId(result);
+
+        dispatch(setCharacters(characters));
+      });
   }, []);
 
  // Получаю данные когда ввожу в форму
@@ -37,7 +47,11 @@ export function PageCharacters() {
 
     if (debouncedSearchTerm) {
       getCharactersFromField(debouncedSearchTerm, cancelation)
-        .then(characters => dispatch(setCharactersFromField(characters)));
+        .then(result => {
+          const characters = charactersWithId(result);
+
+          dispatch(setCharactersFromField(characters));
+        });
     }
 
     return () => {
@@ -46,11 +60,13 @@ export function PageCharacters() {
 
     }, [debouncedSearchTerm]);
 
+    const handleCharacterClick = ({ id }) => {
+      history.push(`/characters/${id}`);
+    };
 
-    function handleSearchTerm(e) {
-      setSearchTerm(e.target.value);
-    
-      // Обработать ошибку чтобы при пустом поле не показывались предыдущие персонажи!!!!!!!!!!!!!!!!!!!!!!!!!!!
+    function handleFavorite(id) {
+      updateFavoritesStorage(id);
+      dispatch(setUpdatedCharacters(id));
     }
 
   return (
@@ -59,6 +75,7 @@ export function PageCharacters() {
         className="app__autocomplete"
         options={charactersFromField || []}
         getOptionLabel={(option) => option.name}
+        renderOption={(option) => <div style={{width: "100%"}} onClick={() => handleCharacterClick(option)}>{option.name}</div>}
         renderInput={(params) => 
           <TextField
             {...params}
@@ -66,11 +83,11 @@ export function PageCharacters() {
             label="Searching"
             variant="outlined"
             value={searchTerm}
-            onChange={(e) => handleSearchTerm(e)}
+            onChange={({ target }) => setSearchTerm(target.value)}
           /> }
       />
 
-      <ListCharacter />
+      <ListCharacter onFavorite={handleFavorite} />
     </>
   );
 }
