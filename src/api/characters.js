@@ -10,12 +10,22 @@ export async function getCharacters() {
   return characters;
 }
 
-export async function getCharactersFromField(param) {
-  const response = await axios.get(`${BASE_URL}/people/?search=${param}`);
-  const result = await response.data;
-  const characters = await result.results;
+export async function getCharactersFromField(param, cancelation) {
+  const CancelToken = axios.CancelToken;
 
-  console.log(characters);
+  const response = await axios.get(`${BASE_URL}/people/?search=${param}`, {
+    cancelToken: new CancelToken(cancelation),
+  });
+
+  const result = response.data;
+  const characters = result.results;
+
   return characters;
 }
 
+export async function getCurrentCharacter(characterId) {
+  const response = await axios.get(`${BASE_URL}/people/${characterId}`);
+  const character = await response.data;
+  
+  return character;
+}

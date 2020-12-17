@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { useSelector } from 'react-redux';
+import classNames from 'classnames';
+import { useHistory } from "react-router-dom";
 
 import { makeStyles } from '@material-ui/core/styles';
 import { red } from '@material-ui/core/colors';
@@ -11,14 +12,11 @@ import CardHeader from '@material-ui/core/CardHeader';
 import CardMedia from '@material-ui/core/CardMedia';
 import CardContent from '@material-ui/core/CardContent';
 import CardActions from '@material-ui/core/CardActions';
-import Collapse from '@material-ui/core/Collapse';
 import Avatar from '@material-ui/core/Avatar';
 import IconButton from '@material-ui/core/IconButton';
 import Typography from '@material-ui/core/Typography';
 import FavoriteIcon from '@material-ui/icons/Favorite';
-import ShareIcon from '@material-ui/icons/Share';
-import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
-import MoreVertIcon from '@material-ui/icons/MoreVert';
+
 
 import './Character.scss';
 
@@ -29,6 +27,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   expand: {
+    fontSize: 18,
     transform: 'rotate(0deg)',
     marginLeft: 'auto',
     transition: theme.transitions.create('transform', {
@@ -45,15 +44,14 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-export default function Character({ character }) {
+export default function Character({ character, onFavorite }) {
   const classes = useStyles();
-  const [expanded, setExpanded] = React.useState(false);
+  const history = useHistory();
 
-  const characters = useSelector(state => state.characters);
-  const { name } = character;
+  const { name, id, liked } = character;
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  const handleCharacterClick = () => {
+    history.push(`/characters/${id}`);
   };
 
   return (
@@ -61,7 +59,7 @@ export default function Character({ character }) {
       <CardHeader
         avatar={
           <Avatar aria-label="recipe" className={classes.avatar}>
-            { name[0] }
+            { name && name[0] }
           </Avatar>
         }
         title={name}
@@ -81,28 +79,12 @@ export default function Character({ character }) {
       </CardContent>
 
       <CardActions disableSpacing>
-        <IconButton aria-label="add to favorites">
-          <FavoriteIcon className="card__favorite" />
+        <IconButton aria-label="add to favorites" onClick={() => onFavorite(id)}>
+          <FavoriteIcon className={classNames('card__favorite', { "card__liked": liked })} />
         </IconButton>
 
-        <IconButton
-          className={clsx(classes.expand, {
-            [classes.expandOpen]: expanded,
-          })}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
-        >
-          <ExpandMoreIcon />
-
-        </IconButton>
+        <IconButton className={clsx(classes.expand)} onClick={handleCharacterClick}>More</IconButton>
       </CardActions>
-
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <CardContent>
-          Some information
-        </CardContent>
-      </Collapse>
     </Card>
   );
 }

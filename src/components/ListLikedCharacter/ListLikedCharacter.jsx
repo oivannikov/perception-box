@@ -2,20 +2,19 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 
-import { ListLikedCharacter } from '../ListLikedCharacter/ListLikedCharacter';
-
 import Character from '../Character/Character';
 
-import './ListCharacter.scss';
-
-export function ListCharacter({ onFavorite }) {
+export function ListLikedCharacter({  onFavorite }) {
   const characters = useSelector(state => state.characters);
+  const likedCharacters =  characters.filter(({ liked }) => liked);
 
   return (
     <>
+      { likedCharacters.length !== 0 && <h1>Liked characters</h1> }
+
       <div className="listCharacter">
       {
-        characters.map(character => (
+       likedCharacters.map(character => (
           <Character
             className="listCharacter__character"
             character={character}
@@ -25,8 +24,6 @@ export function ListCharacter({ onFavorite }) {
         ))
       }
       </div>
-
-      <ListLikedCharacter  onFavorite={onFavorite} />
     </>
   );
 }
