@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import classNames from 'classnames';
-// import PropTypes from 'prop-types';
+import PropTypes from 'prop-types';
 
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -10,7 +10,7 @@ import { setHomeworld } from '../../redux/actions';
 import { getHomeworldCharacter } from '../../api/characters';
 
 import { makeStyles } from '@material-ui/core/styles';
-import { blue } from '@material-ui/core/colors';
+import { red } from '@material-ui/core/colors';
 import clsx from 'clsx';
 import Card from '@material-ui/core/Card';
 import CardHeader from '@material-ui/core/CardHeader';
@@ -42,10 +42,10 @@ const useStyles = makeStyles((theme) => ({
   },
 
   avatar: {
-    backgroundColor: blue[500],
-    height: 60,
-    width: 60,
-    fontSize: 30,
+    backgroundColor: red[500],
+    height: 50,
+    width: 50,
+    fontSize: 25,
   },
 }));
 
@@ -96,13 +96,7 @@ export default function Character({ character, onFavorite }) {
   );
 }
 
-// Character.propTypes = {
-//   onFavorite: PropTypes.func.isRequired,
-//   character: PropTypes.object({
-//     name: PropTypes.string.isRequired,
-//     id: PropTypes.number.isRequired,
-//     liked: PropTypes.bool.isRequired,
-//     gender: PropTypes.string.isRequired,
-//     homeworld: PropTypes.string.isRequired,
-//   }),
-// }
+Character.propTypes = {
+  onFavorite: PropTypes.func.isRequired,
+  character: PropTypes.object.isRequired,
+}

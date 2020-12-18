@@ -4,8 +4,6 @@ import { useHistory } from 'react-router-dom';
 
 import FacebookLogin from 'react-facebook-login';
 
-import './SignInFacebook.scss';
-
 export function SignInFacebook({ onRigist, onPageCharacters }) {
   const history = useHistory();
 
