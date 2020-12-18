@@ -1,10 +1,11 @@
-import { SET_CHARACTERS, SET_CHARACTERS_FROM_FIELD, SET_CURRENT_CHARACTER, UPDATE_CHARACTERS } from "./types";
+import { SET_CHARACTERS, SET_CHARACTERS_FROM_FIELD, SET_CURRENT_CHARACTER, SET_HOMEWORLD, UPDATE_CHARACTERS } from "./types";
 
 const initialState = {
   characters: [],
   currentCharacter: {},
   authUser: false,
   charactersFromField: [],
+  homeworld: {},
 }
 
 function updateCharacters(characters, id) {
@@ -40,6 +41,13 @@ export const characterReducer = (state= initialState, action) => {
         ...state,
         characters: updateCharacters(state.characters, action.id),
       }
+    
+    case SET_HOMEWORLD:
+      return {
+        ...state,
+        homeworld: {...state.homeworld, ...action.payload},
+      }
+    
 
     default: return state;
   }

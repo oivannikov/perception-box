@@ -1,9 +1,10 @@
 import React from 'react';
 
+import PropTypes from 'prop-types';
+
 import { useSelector } from 'react-redux';
 
 import { ListLikedCharacter } from '../ListLikedCharacter/ListLikedCharacter';
-
 import Character from '../Character/Character';
 
 import './ListCharacter.scss';
@@ -29,4 +30,8 @@ export function ListCharacter({ onFavorite }) {
       <ListLikedCharacter  onFavorite={onFavorite} />
     </>
   );
+}
+
+ListCharacter.propTypes = {
+  onFavorite: PropTypes.func.isRequired,
 }

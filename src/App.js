@@ -2,19 +2,17 @@ import { useState } from 'react';
 
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import { SignInFacebook } from './components/SignInFacebook/SignInFacebook';
 import { PageCharacters } from './components/Pages/PageCharacters/PageCharacters';
 import { PageCurrentCharacter } from './components/Pages/PageCurrentCharacter/PageCurrentCharacter';
 import { Modal } from './components/Modal/Modal';
 import { SignIn } from './components/SignIn/SignIn';
-
 
 import './App.scss';
 
 function App() {
   const [isRegist, setIsRegist] = useState(true);
   const [isPage, setPageCharacters] = useState(false);
-  
+
   return (
     <div className="app">
     { isPage
@@ -27,7 +25,7 @@ function App() {
               <Route path="/characters/:characterId" component={PageCurrentCharacter} />
             </Switch>
           )
-        : isRegist && <Modal> <SignIn onRigist={setIsRegist} onPageCharacters={setPageCharacters} /> </Modal>
+        : isRegist && <Modal> <SignIn onRigist={setIsRegist} onPageCharacters={setPageCharacters} /></Modal>
     }
     </div>
   );

@@ -1,11 +1,28 @@
 .card {
-  max-width: 345px;
+  width: 345px;
   margin: 20px;
   opacity: 0.9;
 
+  & .MuiCardHeader-content {
+    font-size: 23px;
+  }
+
+  & .MuiCardHeader-root {
+    padding: 0 16px;
+  }
+
+  &__header .MuiCardHeader-avatar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+  }
+
+  &__footer.MuiCardActions-root {
+    margin-top: 50px;
+  }
+
   &__liked {
-    color: red; 
+    color: rgb(224, 19, 19);
   }
 }
-
-

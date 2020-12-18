@@ -1,5 +1,5 @@
 {
-  "homepages": ".",
+  "homepages": "https://oivannikov.github.io/perception-box/",
   "name": "perception-box",
   "version": "0.1.0",
   "private": true,
@@ -9,7 +9,9 @@
     "@material-ui/lab": "^4.0.0-alpha.57",
     "axios": "^0.21.0",
     "classnames": "^2.2.6",
+    "gh-pages": "^3.1.0",
     "node-sass": "^4.14.1",
+    "prop-types": "^15.7.2",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-facebook-login": "^4.1.1",

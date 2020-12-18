@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
-import { SignInFacebook } from '../SignInFacebook/SignInFacebook';
-
-import classNames from 'classnames';
 import PropTypes from 'prop-types';
 
+import { SignInFacebook } from '../SignInFacebook/SignInFacebook';
 
 import './SignIn.scss';
 
@@ -51,4 +49,5 @@ export function SignIn({ onRigist, onPageCharacters }) {
 
 SignIn.propTypes = {
   onRigist: PropTypes.func.isRequired,
+  onPageCharacters: PropTypes.func.isRequired
 }

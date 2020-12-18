@@ -11,23 +11,23 @@
   &__input {
     width: 100%;
     margin: 20px 0;
-    height: 40px;
-    border-bottom: 2px solid gray;
+    height: 28px;
+    border-bottom: 1px solid gray;
     opacity: 0.7;
     transition: 1.5s;
-    font-size: 22px;
+    font-size: 16px;
     color: #26a69a;
   
     &:focus {
       transition: border-bottom 0.3s;
-      border-bottom: 2px solid #26a69a;
+      border-bottom: 1px solid #26a69a;
     }
 
 
     &::placeholder {
       letter-spacing: 1px;
       color: #26a69a;
-      font-size: 22px;
+      font-size: 16px;
       opacity: 0.7;
     }
   }
@@ -45,12 +45,12 @@
   &__sign-in,
   .kep-login-facebook {
     width: 100%;
-    font-size: 18px;
+    font-size: 14px;
     background-color: #26a69a;
     color: white;
     padding: 8px 0;
-    font-weight: 300;
-    letter-spacing: 1px;
+    font-weight: normal;
+    letter-spacing: 1.5px;
     text-transform: uppercase;
     border: 1px solid #26a69a;
     cursor: pointer;
