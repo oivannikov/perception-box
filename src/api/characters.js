@@ -39,12 +39,12 @@ export async function getHomeworldCharacter(urlHomeworld) {
 }
 
 export async function getFilmsCharacter(urlFilm) {
-  const https = 'https';
-  const str = urlFilm.slice(4);
-  const updatedRequest = https.concat(str);
+  // const https = 'https';
+  // const str = urlFilm.slice(4);
+  // const updatedRequest = https.concat(str);
 
-  console.log(updatedRequest);
-  const response = await axios.get(`${updatedRequest}`);
+  // console.log(updatedRequest);
+  const response = await axios.get(`${urlFilm}`);
   const result = await response.data;
   
   return result.title;
