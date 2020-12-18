@@ -56,7 +56,7 @@ export function PageCharacters() {
       cancel && cancel();
     }
 
-    }, [debouncedSearchTerm]);
+    }, [debouncedSearchTerm, dispatch]);
 
     const handleCharacterClick = ({ id }) => {
       history.push(`/characters/${id}`);

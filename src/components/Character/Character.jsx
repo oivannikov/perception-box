@@ -64,7 +64,7 @@ export default function Character({ character, onFavorite }) {
   useEffect(() => {
     getHomeworldCharacter(homeworld)
       .then(result => dispatch(setHomeworld({[id]: result})));
-  }, [character, homeworld])
+  }, [character, homeworld, id, dispatch])
 
   return (
     <Card className="card">

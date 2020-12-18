@@ -31,7 +31,7 @@ export function PageCurrentCharacter() {
         setLoading(false);
       });
 
-  }, [characterId]);
+  }, [characterId, dispatch]);
 
   useEffect(() => {
     let filmRequest = (films || []).map(film => getFilmsCharacter(film));
@@ -39,7 +39,7 @@ export function PageCurrentCharacter() {
     Promise.all(filmRequest)
       .then(result => setNameFilms(result));
 
-  }, [character]);
+  }, [character, films]);
 
   return (
     <>
