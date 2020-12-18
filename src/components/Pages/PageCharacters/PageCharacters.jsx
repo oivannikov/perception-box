@@ -34,9 +34,8 @@ export function PageCharacters() {
         dispatch(setCharacters(characters));
         setLoading(false);
       });
-  }, []);
+  }, [dispatch]);
 
- // Получаю данные когда ввожу в форму
   useEffect(() => {
     let cancel;
 

@@ -22,7 +22,7 @@ export function SignInFacebook({ onRigist, onPageCharacters }) {
     <>
       <FacebookLogin
          appId="203258351346646"
-         autoLoad={true}
+         autoLoad={false}
          fields="name,email"
          onClick={() => onRigist(false)}
          callback={(response) => responseFacebook(response)}

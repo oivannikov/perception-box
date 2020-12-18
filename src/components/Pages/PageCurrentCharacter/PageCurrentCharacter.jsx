@@ -3,10 +3,10 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
-import { Loader } from '../../Loader/Loader';
-
 import { setCurrentCharacter } from '../../../redux/actions';
 import { getCurrentCharacter, getFilmsCharacter } from '../../../api/characters';
+
+import { Loader } from '../../Loader/Loader';
 
 import './PageCurrentCharacter.scss';
 
@@ -31,15 +31,15 @@ export function PageCurrentCharacter() {
         setLoading(false);
       });
 
-  }, []);
+  }, [characterId]);
 
-  // useEffect(() => {
-  //   let filmRequest = films.map(film => getFilmsCharacter(film));
+  useEffect(() => {
+    let filmRequest = (films || []).map(film => getFilmsCharacter(film));
     
-  //   Promise.all(filmRequest)
-  //     .then(result => setNameFilms(result));
+    Promise.all(filmRequest)
+      .then(result => setNameFilms(result));
 
-  // }, [character]);
+  }, [character]);
 
   return (
     <>
@@ -83,9 +83,9 @@ export function PageCurrentCharacter() {
                     Homeworld: {homeworld[id]}
                   </li>
 
-                  {/* <li className="characterInfo__parametr">
-                    Films: {nameFilms.join(',')}
-                  </li> */}
+                  <li className="characterInfo__parametr">
+                    Films: {nameFilms.join(', ')}
+                  </li>
                 </ul>
               </div>
             </div>

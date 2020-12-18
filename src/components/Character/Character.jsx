@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 
 import classNames from 'classnames';
-import PropTypes from 'prop-types';
+// import PropTypes from 'prop-types';
 
 import { useHistory } from "react-router-dom";
 import { useDispatch, useSelector } from 'react-redux';
@@ -63,7 +63,7 @@ export default function Character({ character, onFavorite }) {
   useEffect(() => {
     getHomeworldCharacter(homeworld)
       .then(result => dispatch(setHomeworld({[id]: result})));
-  }, [character])
+  }, [character, dispatch, homeworld, id])
 
   return (
     <Card className="card">
@@ -95,13 +95,13 @@ export default function Character({ character, onFavorite }) {
   );
 }
 
-Character.propTypes = {
-  onFavorite: PropTypes.func.isRequired,
-  character: PropTypes.arrayOf(PropTypes.shape({
-    name: PropTypes.string.isRequired,
-    id: PropTypes.number.isRequired,
-    liked: PropTypes.bool.isRequired,
-    gender: PropTypes.string.isRequired,
-    homeworld: PropTypes.string.isRequired,
-  })).isRequired,
-}
+// Character.propTypes = {
+//   onFavorite: PropTypes.func.isRequired,
+//   character: PropTypes.object({
+//     name: PropTypes.string.isRequired,
+//     id: PropTypes.number.isRequired,
+//     liked: PropTypes.bool.isRequired,
+//     gender: PropTypes.string.isRequired,
+//     homeworld: PropTypes.string.isRequired,
+//   }),
+// }

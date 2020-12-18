@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-import { Route, Switch, Redirect } from 'react-router-dom';
+import { Route, Switch, Redirect, useHistory } from 'react-router-dom';
 
 import { PageCharacters } from './components/Pages/PageCharacters/PageCharacters';
 import { PageCurrentCharacter } from './components/Pages/PageCurrentCharacter/PageCurrentCharacter';
@@ -12,6 +12,11 @@ import './App.scss';
 function App() {
   const [isRegist, setIsRegist] = useState(true);
   const [isPage, setPageCharacters] = useState(false);
+  const history = useHistory();
+
+  if (isRegist) {
+    history.push('/');
+  }
 
   return (
     <div className="app">

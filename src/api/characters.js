@@ -42,5 +42,5 @@ export async function getFilmsCharacter(urlFilm) {
   const response = await axios.get(`${urlFilm}`);
   const result = await response.data;
   
-  return result;
+  return result.title;
 }
