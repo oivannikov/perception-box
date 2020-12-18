@@ -48,6 +48,7 @@ const useStyles = makeStyles((theme) => ({
     fontSize: 30,
   },
 }));
+
 export default function Character({ character, onFavorite }) {
   const classes = useStyles();
   const history = useHistory();
@@ -63,7 +64,7 @@ export default function Character({ character, onFavorite }) {
   useEffect(() => {
     getHomeworldCharacter(homeworld)
       .then(result => dispatch(setHomeworld({[id]: result})));
-  }, [character, dispatch, homeworld, id])
+  }, [character, homeworld])
 
   return (
     <Card className="card">
