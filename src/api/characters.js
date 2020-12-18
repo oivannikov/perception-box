@@ -32,14 +32,14 @@ export async function getCurrentCharacter(characterId) {
 }
 
 export async function getHomeworldCharacter(urlHomeworld) {
-  const response = await axios.get(`https://cors-anywhere.herokuapp.com/${urlHomeworld}`);
+  const response = await axios.get(`${urlHomeworld}`);
   const result = await response.data;
 
   return result.name;
 }
 
 export async function getFilmsCharacter(urlFilm) {
-  const response = await axios.get(`https://cors-anywhere.herokuapp.com/${urlFilm}`);
+  const response = await axios.get(`${urlFilm}`);
   const result = await response.data;
   
   return result.title;
