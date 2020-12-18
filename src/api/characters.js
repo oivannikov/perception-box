@@ -39,7 +39,11 @@ export async function getHomeworldCharacter(urlHomeworld) {
 }
 
 export async function getFilmsCharacter(urlFilm) {
-  const response = await axios.get(`https://cors-anywhere.herokuapp.com/${urlFilm}`);
+  const https = 'https';
+  const str = urlFilm.slice(4);
+  const updatedRequest = https.concat(str);
+  
+  const response = await axios.get(`${updatedRequest}`);
   const result = await response.data;
   
   return result.title;
